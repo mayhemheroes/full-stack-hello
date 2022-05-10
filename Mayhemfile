@@ -1,0 +1,6 @@
+project: rnshah9/mayhem-full-stack-hello
+target: as-exec
+
+cmds:
+  - cmd: /full-stack-hello/as_exec @@
+    filepath: /test.s
