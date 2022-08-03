@@ -2,5 +2,4 @@ project: full-stack-hello
 target: as-exec
 
 cmds:
-  - cmd: /full-stack-hello/as_exec /test.s
-    filepath: /test.s
+  - cmd: /as_exec @@
