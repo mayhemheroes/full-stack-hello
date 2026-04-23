@@ -99,7 +99,7 @@ For example, if the assembly file in concern is tests/coverage.s
    ```
    ./as_exec -o tests/temp.o -w tests/hello.s
    ```
-4. Laod an assembled ELF file tests/hello.o and evaluate (rexcute) it.
+4. Load an assembled ELF file tests/hello.o and evaluate (execute) it.
    ```
    ./as_exec -x tests/hello.o
    ```
