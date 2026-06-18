@@ -1,0 +1,5 @@
+project: full-stack-hello
+target: as-exec
+
+cmds:
+  - cmd: /as_exec @@
