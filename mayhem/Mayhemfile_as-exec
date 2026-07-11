@@ -1,0 +1,20 @@
+project: full-stack-hello
+# Target name preserved from the original mayhemheroes integration (which ran
+# `/full-stack-hello/as_exec /test.s`) so Mayhem run history stays continuous.
+target: as-exec
+
+# File-input (CLI) target: feed the fuzz bytes as a `.s` assembly source file to as_exec — the tiny
+# "full stack hello world" toolchain (assembler + register VM). In the default ASSEMBLE_AND_EVAL mode
+# as_exec assembles the source (as.c) into VM bytecode and executes it on the computed-goto interpreter
+# (vm.c) — the whole assemble+run surface on one file. Not libFuzzer: the natural fuzz surface is the
+# CLI binary on a file (like lacc/hicolor). @@ is the input-file placeholder.
+#
+# A valid program (e.g. `print "Hello World"`) assembles + runs to exit 0 (passing seed); the bytes are
+# fully parsed and executed. The sanitized binary bakes detect_leaks=0 (see mayhem/build.sh /
+# mayhem/asan_default_options.c) so ASan's benign run-once exit-leaks don't mask real crashes — ASan's
+# OOB/use-after-free checks and all of UBSan stay ON and HALTING.
+cmds:
+  - cmd: /mayhem/as_exec @@
+testsuite:
+  - https://$MAYHEM_DOMAIN/$MAYHEM_PROJECT/$MAYHEM_TARGET/testsuite.tar
+  - file://mayhem/as-exec/testsuite
